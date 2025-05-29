@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [originalUrl, setOriginalUrl] = useState('');
-  const [shortenedUrl, setShortenedUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
@@ -21,7 +21,7 @@ function App() {
 
     try {
       const data = await shortenUrl(originalUrl);
-      setShortenedUrl(data.shortUrl);
+      setShortUrl(data.shortUrl);
     } catch (err) {
       setError(err.message || 'Failed to shorten URL');
     } finally {
@@ -33,11 +33,6 @@ function App() {
     if (e.key === 'Enter') {
       handleShorten();
     }
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(shortenedUrl);
-    setCopied(true);
   };
 
   return (
@@ -62,20 +57,23 @@ function App() {
           </button>
         </div>
 
-        {shortenedUrl && (
+        {shortUrl && (
           <div className="result">
             <p>Your shortened URL:</p>
             <a 
-              href={shortenedUrl}
-              className="shortened-url"
-              target="_blank"
+              href={shortUrl.shortUrl}  // 실제 리다이렉트용 전체 URL 사용
+              className="shortened-url" 
+              target="_blank" 
               rel="noopener noreferrer"
             >
-              {shortenedUrl}
+              {shortUrl.displayUrl}  // 짧은 형식으로 표시
             </a>
             <button 
               className="copy-button"
-              onClick={copyToClipboard}
+              onClick={() => {
+                navigator.clipboard.writeText(shortUrl.shortUrl);  // 복사할 때는 전체 URL 사용
+                setCopied(true);
+              }}
             >
               {copied ? '✓ Copied!' : 'Copy URL'}
             </button>
