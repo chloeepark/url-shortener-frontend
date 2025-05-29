@@ -21,7 +21,7 @@ function App() {
 
     try {
       const data = await shortenUrl(originalUrl);
-      setShortUrl(data.shortUrl);
+      setShortUrl(data);  // 전체 데이터 객체를 저장
     } catch (err) {
       setError(err.message || 'Failed to shorten URL');
     } finally {
