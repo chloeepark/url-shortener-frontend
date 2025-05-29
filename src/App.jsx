@@ -66,7 +66,7 @@ function App() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              {shortUrl.displayUrl}
+              {shortUrl.shortUrl.split('/').pop()}  // shortId만 표시
             </a>
             <button 
               className="copy-button"
