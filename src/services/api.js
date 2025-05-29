@@ -9,7 +9,7 @@ export const shortenUrl = async (originalUrl) => {
     const shortId = response.data.shortUrl.split('/').pop();
     return { 
       ...response.data,
-      displayUrl: `url-shortener/${shortId}`,  // 표시용 URL
+      displayUrl: `${API_BASE_URL}/${shortId}`,  // 표시용 URL
       shortUrl: response.data.shortUrl  // 실제 리다이렉트용 URL
     };
   } catch (error) {
