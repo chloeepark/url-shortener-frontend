@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [originalUrl, setOriginalUrl] = useState('');
-  const [shortUrl, setShortUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
