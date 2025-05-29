@@ -66,7 +66,7 @@ function App() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              {shortUrl.displayUrl}  // 짧은 형식으로 표시
+              {shortUrl.displayUrl}
             </a>
             <button 
               className="copy-button"
