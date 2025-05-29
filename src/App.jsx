@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { shortenUrl } from './services/api';
+import './App.css';
 
 function App() {
   const [originalUrl, setOriginalUrl] = useState('');
@@ -40,35 +41,49 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>🚀 URL Shortener</h1>
-      <input
-        type="text"
-        placeholder="Enter your long URL"
-        value={originalUrl}
-        onChange={(e) => setOriginalUrl(e.target.value)}
-        onKeyDown={handleKeyDown}
-        style={{ padding: '10px', width: '300px' }}
-      />
-      <button onClick={handleShorten} style={{ marginLeft: '10px', padding: '10px' }}>
-        {loading ? 'Shortening...' : 'Shorten'}
-      </button>
+    <div className="container">
+      <div className="card">
+        <h1 className="title">✨ URL Shortener</h1>
+        <div className="input-container">
+          <input
+            className="url-input"
+            type="text"
+            placeholder="Enter your long URL here..."
+            value={originalUrl}
+            onChange={(e) => setOriginalUrl(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button 
+            className="shorten-button"
+            onClick={handleShorten}
+            disabled={loading}
+          >
+            {loading ? 'Shortening...' : 'Shorten URL'}
+          </button>
+        </div>
 
-      {shortenedUrl && (
-        <div style={{ marginTop: '20px' }}>
-          <p>Shortened URL:</p>
-          <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">
-            {shortenedUrl}
-          </a>
-          <div>
-            <button onClick={copyToClipboard} style={{ marginTop: '10px', padding: '5px 10px' }}>
-              {copied ? 'Copied!' : 'Copy URL'}
+        {shortenedUrl && (
+          <div className="result">
+            <p>Your shortened URL:</p>
+            <a 
+              href={shortenedUrl}
+              className="shortened-url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {shortenedUrl}
+            </a>
+            <button 
+              className="copy-button"
+              onClick={copyToClipboard}
+            >
+              {copied ? '✓ Copied!' : 'Copy URL'}
             </button>
           </div>
-        </div>
-      )}
+        )}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="error">{error}</p>}
+      </div>
     </div>
   );
 }
