@@ -24,7 +24,7 @@ function App() {
       const shortId = data.shortUrl.split('/').pop();
       setShortUrl({
         shortUrl: data.shortUrl,
-        displayUrl: shortId  // shortId만 저장
+        displayUrl: shortId
       });
     } catch (err) {
       setError(err.message || 'Failed to shorten URL');
@@ -70,7 +70,7 @@ function App() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              {shortUrl.displayUrl}  // shortId만 표시
+              {shortUrl.displayUrl} 
             </a>
             <button 
               className="copy-button"
