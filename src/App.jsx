@@ -21,7 +21,11 @@ function App() {
 
     try {
       const data = await shortenUrl(originalUrl);
-      setShortUrl(data);  // 전체 데이터 객체를 저장
+      const shortId = data.shortUrl.split('/').pop();
+      setShortUrl({
+        shortUrl: data.shortUrl,
+        displayUrl: shortId  // shortId만 저장
+      });
     } catch (err) {
       setError(err.message || 'Failed to shorten URL');
     } finally {
@@ -66,7 +70,7 @@ function App() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              {shortUrl.shortUrl.split('/').pop()}  // shortId만 표시
+              {shortUrl.displayUrl}  // shortId만 표시
             </a>
             <button 
               className="copy-button"
